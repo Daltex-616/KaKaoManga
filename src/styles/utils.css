@@ -1,0 +1,26 @@
+
+@tailwind utilities;
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .comic-shadow {
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .comic-hover {
+    transition: all 0.2s ease;
+  }
+  
+  .comic-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+  }
+}
