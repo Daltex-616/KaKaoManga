@@ -98,7 +98,7 @@ const FeaturedProducts = () => {
   };
 
   return (
-    <div className="py-12 bg-white">
+    <div className="py-12 bg-general-grey">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-comic text-comic-purple">Productos Destacados</h2>
