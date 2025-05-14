@@ -40,3 +40,100 @@
 .read-the-docs {
   color: #888;
 }
+
+.explore-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e63946 0%, #d62839 100%);
+  color: white;
+  font-weight: bold;
+  font-family: 'Your Manga Font', sans-serif;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.125rem;
+  border: 2px solid #ffbe0b;
+  box-shadow: 0 4px 6px -1px rgba(230, 57, 70, 0.3), 0 2px 4px -1px rgba(230, 57, 70, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efecto hover */
+.explore-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(230, 57, 70, 0.4), 0 4px 6px -2px rgba(230, 57, 70, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Efecto activo/clic */
+.explore-btn:active {
+  transform: scale(0.98);
+}
+
+/* Brillo interior al hover */
+.explore-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 190, 11, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.explore-btn:hover::before {
+  opacity: 1;
+}
+
+/* Estilos del enlace interno */
+.explore-link {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Efecto de partículas (opcional) */
+.explore-btn::after {
+  content: '';
+  position: absolute;
+  right: -0.5rem;
+  top: -0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #ffbe0b;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.explore-btn:hover::after {
+  animation: ping 1.5s ease infinite;
+  opacity: 0.8;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  70%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes subtle-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.menu-button {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}

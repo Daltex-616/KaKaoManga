@@ -70,12 +70,14 @@ const HeroCarousel = () => {
           <p className="text-xl text-white mb-8 drop-shadow-lg">
             {currentItem.description}
           </p>
-          <Button 
-            variant="default" 
-            className="bg-comic-red hover:bg-comic-red/90 text-white font-manga rounded-lg px-8 py-3 text-lg"
+          <Button
+            variant="default"
+            className="explore-btn text-lg py-6"
             asChild
           >
-            <a href={currentItem.link}>Explorar</a>
+            <a href={currentItem.link} className="explore-link font-bold tracking-wide">
+              Explorar!
+            </a>
           </Button>
         </div>
       </div>
@@ -106,9 +108,8 @@ const HeroCarousel = () => {
           {heroItems.map((_, i) => (
             <button
               key={i}
-              className={`h-2 rounded-full transition-all ${
-                i === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
-              }`}
+              className={`h-2 rounded-full transition-all ${i === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
+                }`}
               onClick={() => setCurrentIndex(i)}
             />
           ))}
