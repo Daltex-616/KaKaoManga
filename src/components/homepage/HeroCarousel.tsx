@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import bannerComic from "/banner_comics.png"
 import bannerManga from "/banner_manga.jpg"
+import { useNavigate } from 'react-router-dom';
 
 // Sample hero items
 const heroItems = [
@@ -31,6 +32,7 @@ const heroItems = [
 ];
 
 const HeroCarousel = () => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNext = () => {
@@ -49,6 +51,10 @@ const HeroCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
+   const handleExplore = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(currentItem.link);
+  };
   const currentItem = heroItems[currentIndex];
 
   return (
@@ -73,6 +79,7 @@ const HeroCarousel = () => {
           <Button
             variant="default"
             className="explore-btn text-lg py-6"
+            onClick={handleExplore}
             asChild
           >
             <a href={currentItem.link} className="explore-link font-bold tracking-wide">
