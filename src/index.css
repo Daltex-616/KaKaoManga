@@ -62,3 +62,9 @@
     @apply border-2 border-kakao-gold shadow-lg;
   }
 }
+.clip-path-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+}
+.clip-path-wave {
+  clip-path: path('M0,20 C150,110 350,-40 500,20 C650,80 850,-30 1000,20 L1000,100 L0,100 Z');
+}

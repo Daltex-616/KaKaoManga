@@ -51,77 +51,82 @@ const HeroCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
-   const handleExplore = (e: React.MouseEvent) => {
+  const handleExplore = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate(currentItem.link);
   };
   const currentItem = heroItems[currentIndex];
 
   return (
-    <div className="relative h-[500px] overflow-hidden">
-      {/* Image with overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-700 transform"
-        style={{ backgroundImage: `url(${currentItem.image})` }}
-      >
-        <div className="hero-overlay"></div>
-      </div>
+    <div className='relative'>
+      <div className="relative h-[500px] overflow-hidden shadow-[0_50px_50px_-20px_rgba(0,0,0,0.3)]">
+        {/* Image with overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700 transform"
+          style={{ backgroundImage: `url(${currentItem.image})` }}
+        >
+          <div className="hero-overlay"></div>
+        </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
-        <div className="max-w-2xl animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-comic text-white mb-4 drop-shadow-lg">
-            {currentItem.title}
-          </h1>
-          <p className="text-xl text-white mb-8 drop-shadow-lg">
-            {currentItem.description}
-          </p>
+        {/* Content */}
+        <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
+          <div className="max-w-2xl animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-comic text-white mb-4 drop-shadow-lg">
+              {currentItem.title}
+            </h1>
+            <p className="text-xl text-white mb-8 drop-shadow-lg">
+              {currentItem.description}
+            </p>
+            <Button
+              variant="default"
+              className="explore-btn text-lg py-6"
+              onClick={handleExplore}
+              asChild
+            >
+              <a href={currentItem.link} className="explore-link font-bold tracking-wide">
+                Explorar!
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        {/* Navigation buttons */}
+        <div className="absolute bottom-10 right-10 z-20 flex space-x-3">
           <Button
-            variant="default"
-            className="explore-btn text-lg py-6"
-            onClick={handleExplore}
-            asChild
+            variant="outline"
+            size="icon"
+            onClick={goToPrev}
+            className="bg-white/20 border-white text-white hover:bg-white hover:text-comic-purple backdrop-blur-sm"
           >
-            <a href={currentItem.link} className="explore-link font-bold tracking-wide">
-              Explorar!
-            </a>
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={goToNext}
+            className="bg-white/20 border-white text-white hover:bg-white hover:text-comic-purple backdrop-blur-sm"
+          >
+            <ChevronRight className="h-5 w-5" />
           </Button>
         </div>
-      </div>
 
-      {/* Navigation buttons */}
-      <div className="absolute bottom-10 right-10 z-20 flex space-x-3">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={goToPrev}
-          className="bg-white/20 border-white text-white hover:bg-white hover:text-comic-purple backdrop-blur-sm"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={goToNext}
-          className="bg-white/20 border-white text-white hover:bg-white hover:text-comic-purple backdrop-blur-sm"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </Button>
-      </div>
+        {/* Indicators */}
+        <div className="absolute bottom-10 left-0 right-0 z-20">
+          <div className="flex justify-center space-x-2">
+            {heroItems.map((_, i) => (
+              <button
+                key={i}
+                className={`h-2 rounded-full transition-all ${i === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
+                  }`}
+                onClick={() => setCurrentIndex(i)}
+              />
+            ))}
 
-      {/* Indicators */}
-      <div className="absolute bottom-10 left-0 right-0 z-20">
-        <div className="flex justify-center space-x-2">
-          {heroItems.map((_, i) => (
-            <button
-              key={i}
-              className={`h-2 rounded-full transition-all ${i === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
-                }`}
-              onClick={() => setCurrentIndex(i)}
-            />
-          ))}
+          </div>
         </div>
+
       </div>
+      
     </div>
   );
 };

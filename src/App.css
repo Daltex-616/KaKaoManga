@@ -85,6 +85,12 @@
 .explore-btn:hover::before {
   opacity: 1;
 }
+.clip-path-wave {
+  clip-path: path('M0,20 C150,110 350,-40 500,20 C650,80 850,-30 1000,20 L1000,100 L0,100 Z');
+}
+.clip-path-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+}
 
 /* Estilos del enlace interno */
 .explore-link {
