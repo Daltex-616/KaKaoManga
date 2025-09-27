@@ -1,25 +1,15 @@
 import { useState, useMemo, useEffect } from 'react';
-import CafeCard from '../components/conts/CafeCard'; // Adjust path as needed
-import { products } from '../data/cafe'; // Adjust path as needed
+import CafeCard from '../components/conts/CafeCard';
+import { products } from '../data/cafe';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
-console.log('Products loaded:', products); // Debug log
-
-// Custom useDebounce hook
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
-
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler);
   }, [value, delay]);
-
   return debouncedValue;
 }
 
@@ -32,7 +22,8 @@ const filterItems = (products, searchTerm, activeCategory, sortBy) => {
       const matchesSearch =
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = activeCategory === 'Todos' || item.category === activeCategory;
+      const matchesCategory =
+        activeCategory === 'Todos' || item.category === activeCategory;
       return matchesSearch && matchesCategory;
     });
 
@@ -42,7 +33,6 @@ const filterItems = (products, searchTerm, activeCategory, sortBy) => {
     result.sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  console.log('Filtered items result:', result); // Debug log
   return result;
 };
 
@@ -52,21 +42,9 @@ const Cafe = () => {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [sortBy, setSortBy] = useState('name');
   const [page, setPage] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const itemsPerPage = isMobile ? 6 : 12;
-
-  useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      setPage(1);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const itemsPerPage = 11;
 
   const filteredItems = useMemo(() => {
     setIsLoading(true);
@@ -80,7 +58,6 @@ const Cafe = () => {
     return filteredItems.slice(start, start + itemsPerPage);
   }, [filteredItems, page, itemsPerPage]);
 
-  
   return (
     <>
       <Navbar />
@@ -88,7 +65,7 @@ const Cafe = () => {
       <section className="py-16 min-h-screen bg-gradient-to-b from-white to-general-blueCream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-comic text-manga-blue mb-2">Café, Té y mucho mas!!</h1>
+            <h1 className="text-4xl font-comic text-manga-blue mb-2">Café, Té y mucho más!!</h1>
             <p className="text-manga-darkBlue/70 text-sm sm:text-base max-w-2xl mx-auto">
               Explora nuestra selección de cafés, tés y delicias culinarias
             </p>
@@ -123,10 +100,11 @@ const Cafe = () => {
                     setActiveCategory(cat);
                     setPage(1);
                   }}
-                  className={`px-3 py-1 rounded-full text-sm font-comic ${activeCategory === cat
+                  className={`px-3 py-1 rounded-full text-sm font-comic ${
+                    activeCategory === cat
                       ? 'bg-manga-blue text-manga-cream'
                       : 'border border-manga-blue text-manga-darkBlue hover:bg-manga-blue/10'
-                    }`}
+                  }`}
                   aria-label={`Filtrar por categoría ${cat}`}
                   aria-selected={activeCategory === cat}
                 >
@@ -141,10 +119,27 @@ const Cafe = () => {
               <p className="text-gray-500">Cargando productos...</p>
             </div>
           ) : visibleItems.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {visibleItems.map((item) => (
-                <CafeCard key={item.id} item={item} />
-              ))}
+            <div className="space-y-12">
+              {/* Fila 1: 4 items */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {visibleItems.slice(0, 4).map((item) => (
+                  <CafeCard key={item.id} item={item} />
+                ))}
+              </div>
+
+              {/* Fila 2: 3 items */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {visibleItems.slice(4, 7).map((item) => (
+                  <CafeCard key={item.id} item={item} />
+                ))}
+              </div>
+
+              {/* Fila 3: 4 items */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {visibleItems.slice(7, 11).map((item) => (
+                  <CafeCard key={item.id} item={item} />
+                ))}
+              </div>
             </div>
           ) : (
             <div className="text-center py-10 bg-white rounded-lg border border-dashed border-gray-300">
@@ -175,6 +170,7 @@ const Cafe = () => {
           )}
         </div>
       </section>
+
       <Footer />
     </>
   );
