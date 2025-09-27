@@ -88,7 +88,7 @@ const Cafe = () => {
       <section className="py-16 min-h-screen bg-gradient-to-b from-white to-general-blueCream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-comic text-manga-blue mb-2">Galería de Café y Comida</h1>
+            <h1 className="text-4xl font-comic text-manga-blue mb-2">Café, Té y mucho mas!!</h1>
             <p className="text-manga-darkBlue/70 text-sm sm:text-base max-w-2xl mx-auto">
               Explora nuestra selección de cafés, tés y delicias culinarias
             </p>
