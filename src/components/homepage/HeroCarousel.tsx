@@ -1,12 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import bannerComic from "/banner_comics.png"
-import bannerManga from "/banner_manga.jpg"
+import bannerComic from "/banner_comics.png";
+import bannerManga from "/banner_manga.jpg";
 import { useNavigate } from 'react-router-dom';
 
-// Sample hero items
 const heroItems = [
   {
     id: 1,
@@ -26,7 +24,7 @@ const heroItems = [
     id: 3,
     title: "Nuestro Café",
     description: "Un lugar acogedor para disfrutar de buena lectura y café gourmet",
-    image: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixid=M3wxMTE3fDB8MXxzZWFyY2h8M3x8Y2FmZXxlbnwwfHx8fDE3MTUxMjM0NTR8MA&ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=600",
+    image: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1600&h=600",
     link: "/cafe"
   }
 ];
@@ -43,11 +41,8 @@ const HeroCarousel = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + heroItems.length) % heroItems.length);
   };
 
-  // Auto slide
   useEffect(() => {
-    const interval = setInterval(() => {
-      goToNext();
-    }, 5000);
+    const interval = setInterval(goToNext, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -55,37 +50,34 @@ const HeroCarousel = () => {
     e.preventDefault();
     navigate(currentItem.link);
   };
+
   const currentItem = heroItems[currentIndex];
 
   return (
-    <div className='relative'>
-      <div className="relative h-[500px] overflow-hidden shadow-[0_50px_50px_-20px_rgba(0,0,0,0.3)]">
-        {/* Image with overlay */}
+    <div className="relative">
+      <div className="relative h-[500px] overflow-hidden">
+        {/* Background image */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-700 transform"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700"
           style={{ backgroundImage: `url(${currentItem.image})` }}
         >
-          <div className="hero-overlay"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
         </div>
 
         {/* Content */}
         <div className="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
-          <div className="max-w-2xl animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-comic text-white mb-4 drop-shadow-lg">
+          <div className="max-w-2xl animate-fade-in text-white">
+            <h1 className="text-4xl md:text-6xl font-comic mb-4 drop-shadow-lg">
               {currentItem.title}
             </h1>
-            <p className="text-xl text-white mb-8 drop-shadow-lg">
+            <p className="text-lg md:text-xl mb-8 drop-shadow-lg">
               {currentItem.description}
             </p>
             <Button
-              variant="default"
-              className="explore-btn text-lg py-6"
               onClick={handleExplore}
-              asChild
+              className="bg-kakao-lightBlue hover:bg-white text-white hover:text-kakao-lightBlue font-bold px-6 py-3 rounded-full transition-all duration-300"
             >
-              <a href={currentItem.link} className="explore-link font-bold tracking-wide">
-                Explorar!
-              </a>
+              Explorar!
             </Button>
           </div>
         </div>
@@ -93,18 +85,16 @@ const HeroCarousel = () => {
         {/* Navigation buttons */}
         <div className="absolute bottom-10 right-10 z-20 flex space-x-3">
           <Button
-            variant="outline"
             size="icon"
             onClick={goToPrev}
-            className="bg-white/20 border-white text-white hover:bg-white hover:text-comic-purple backdrop-blur-sm"
+            className="bg-white/20 text-white hover:bg-kakao-lightBlue hover:text-white rounded-full backdrop-blur-md transition-all"
           >
             <ChevronLeft className="h-5 w-5" />
           </Button>
           <Button
-            variant="outline"
             size="icon"
             onClick={goToNext}
-            className="bg-white/20 border-white text-white hover:bg-white hover:text-comic-purple backdrop-blur-sm"
+            className="bg-white/20 text-white hover:bg-kakao-lightBlue hover:text-white rounded-full backdrop-blur-md transition-all"
           >
             <ChevronRight className="h-5 w-5" />
           </Button>
@@ -116,17 +106,15 @@ const HeroCarousel = () => {
             {heroItems.map((_, i) => (
               <button
                 key={i}
-                className={`h-2 rounded-full transition-all ${i === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
-                  }`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === currentIndex ? "w-8 bg-kakao-lightBlue" : "w-2 bg-white/50"
+                }`}
                 onClick={() => setCurrentIndex(i)}
               />
             ))}
-
           </div>
         </div>
-
       </div>
-      
     </div>
   );
 };

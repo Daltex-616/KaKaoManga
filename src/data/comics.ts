@@ -22,7 +22,7 @@ export const products = [
     category: "comic",
     isNew: false,
     description: "Una de las historias más oscuras y emocionantes de Spider-Man, con Kraven como su enemigo definitivo.",
-    publisher: "Marvel Comics",
+    publisher: "Marvel",
     pages: 160,
     releaseDate: "1987-08-01",
     rating: 4.8
@@ -50,7 +50,7 @@ export const products = [
     category: "comic",
     isNew: false,
     description: "Una historia clásica donde los X-Men luchan contra un futuro apocalíptico dominado por los centinelas.",
-    publisher: "Marvel Comics",
+    publisher: "Marvel",
     pages: 128,
     releaseDate: "1981-01-01",
     rating: 4.7
@@ -78,7 +78,7 @@ export const products = [
     category: "comic",
     isNew: false,
     description: "La historia definitiva de Daredevil, donde su identidad secreta es revelada y debe reconstruir su vida.",
-    publisher: "Marvel Comics",
+    publisher: "Marvel",
     pages: 256,
     releaseDate: "1986-09-01",
     rating: 4.8
@@ -162,7 +162,7 @@ export const products = [
     category: "comic",
     isNew: true,
     description: "La historia épica de Thor enfrentándose a Gorr, el Carnicero de Dioses, que busca exterminar a todas las deidades.",
-    publisher: "Marvel Comics",
+    publisher: "Marvel",
     pages: 176,
     releaseDate: "2013-01-01",
     rating: 4.7
