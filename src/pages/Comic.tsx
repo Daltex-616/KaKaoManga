@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { products } from '@/data/comics';
-
+import PoroductCard from '../components/conts/ProductCard';
 const categories = ["Todos", "DC", "Marvel", "Otros"];
 
 const Comic = () => {
@@ -100,36 +100,9 @@ const Comic = () => {
 
           {/* Gallery */}
           {visibleComics.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {visibleComics.map((comic) => (
-                <Card
-                  key={comic.id}
-                  className="overflow-hidden bg-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer"
-                >
-                  <div className="aspect-[3/4] relative">
-                    <img
-                      src={comic.image}
-                      alt={comic.title}
-                      className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-2 left-2 bg-kakao-gold text-kakao-darkBlue px-3 py-1 rounded-full text-xs font-medium">
-                      {comic.category}
-                    </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-lg line-clamp-1">{comic.title}</h3>
-                    <p className="text-gray-600 text-sm line-clamp-1">{comic.author}</p>
-                    <p className="text-kakao-lightBlue font-bold mt-2">${comic.price.toFixed(2)}</p>
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0">
-                    <Button
-                      variant="outline"
-                      className="w-full border-kakao-lightBlue text-kakao-lightBlue hover:bg-kakao-lightBlue hover:text-white transition-colors"
-                    >
-                      Añadir al carrito
-                    </Button>
-                  </CardFooter>
-                </Card>
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+              {visibleComics.map((manga) => (
+                <PoroductCard key={manga.id} manga={manga} />
               ))}
             </div>
           ) : (

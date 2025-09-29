@@ -4,8 +4,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import MangaCard from '../components/conts/MangaCard';
+import PoroductCard from '../components/conts/ProductCard';
 import { products } from '@/data/comics';
+import { useNavigate } from 'react-router-dom';
 
 const categories = ["Todos", "Shueisha", "Kodansha", "Otros"];
 
@@ -44,9 +45,13 @@ const Manga = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const itemsPerPage = isMobile ? 6 : 12;
 
+  const handleCardClick = (id: number) => {
+    navigate(`/manga/${id}`);
+  };
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
@@ -147,7 +152,7 @@ const Manga = () => {
           ) : visibleMangas.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
               {visibleMangas.map((manga) => (
-                <MangaCard key={manga.id} manga={manga} />
+                <PoroductCard key={manga.id} manga={manga}/>
               ))}
             </div>
           ) : (

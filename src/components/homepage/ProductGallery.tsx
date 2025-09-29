@@ -33,7 +33,7 @@ const ProductGallery = () => {
   }, [activeCategory]);
 
   const handleCardClick = (id: number) => {
-    navigate(`/comics/${id}`);
+    navigate(`/product/${id}`);
   };
 
   const handleAddToCart = (e: React.MouseEvent, productId: number) => {

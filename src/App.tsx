@@ -9,13 +9,18 @@ import NotFound from "./pages/NotFound";
 import Cafe from "./pages/Cafe";
 import Manga from "./pages/Manga";
 import Comic from "./pages/Comic";
-import ComicDetail from "./pages/ComicDetail";
+import ProductDetail from "./pages/ProductDetail";
+
+import Cart from "./pages/Cart";
+
+
 import "./styles/utils.css";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -25,13 +30,16 @@ const App = () => (
           <Route path="/cafe" element={<Cafe />} />
           <Route path="/manga" element={<Manga />} />
           <Route path="/comics" element={<Comic />} />
-          <Route path="/comics/:comicId" element={<ComicDetail />} />
+          <Route path="/product/:comicId" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+
   </QueryClientProvider>
 );
+
 
 export default App;
