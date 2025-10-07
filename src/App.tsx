@@ -10,6 +10,7 @@ import Cafe from "./pages/Cafe";
 import Manga from "./pages/Manga";
 import Comic from "./pages/Comic";
 import ProductDetail from "./pages/ProductDetail";
+import CrearCuenta from "./pages/CrearCuenta";
 
 import Cart from "./pages/Cart";
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/cafe" element={<Cafe />} />
           <Route path="/manga" element={<Manga />} />
           <Route path="/comics" element={<Comic />} />
+          <Route path="/crear-cuenta" element={<CrearCuenta />} />
           <Route path="/product/:comicId" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
