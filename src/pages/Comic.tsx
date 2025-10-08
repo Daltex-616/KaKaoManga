@@ -1,17 +1,17 @@
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import { useState, useMemo, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { products } from '@/data/comics';
-import PoroductCard from '../components/conts/ProductCard';
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { useState, useMemo, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { products } from "@/data/comics";
+import PoroductCard from "../components/conts/ProductCard";
 const categories = ["Todos", "DC", "Marvel", "Otros"];
 
 const Comic = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('Todos');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState("Todos");
   const [visibleCount, setVisibleCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -22,8 +22,8 @@ const Comic = () => {
       setVisibleCount(mobile ? 6 : 12);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const filteredComics = useMemo(() => {
@@ -61,7 +61,9 @@ const Comic = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-comic text-kakao-lightBlue mb-2">Catálogo de Cómics</h2>
+            <h2 className="text-4xl font-comic text-kakao-lightBlue mb-2">
+              Catálogo de Cómics
+            </h2>
             <p className="text-kakao-darkBlue/70 text-sm sm:text-base max-w-xl mx-auto">
               Explora nuestra colección de cómics por autor, editorial o título
             </p>
@@ -81,15 +83,15 @@ const Comic = () => {
               {categories.map((cat) => (
                 <Button
                   key={cat}
-                  variant={activeCategory === cat ? 'default' : 'outline'}
+                  variant={activeCategory === cat ? "default" : "outline"}
                   onClick={() => {
                     setActiveCategory(cat);
                     setVisibleCount(isMobile ? 6 : 12);
                   }}
-                  className={`text-sm px-4 py-2 rounded-full ${
+                  className={`px-3 py-1 rounded-full text-sm font-comic ${
                     activeCategory === cat
-                      ? 'bg-kakao-lightBlue text-white'
-                      : 'border-kakao-lightBlue text-kakao-darkBlue hover:bg-kakao-lightBlue/10'
+                      ? "bg-manga-blue text-manga-cream"
+                      : "border border-manga-blue text-manga-darkBlue hover:bg-manga-blue/10"
                   }`}
                 >
                   {cat}
@@ -100,14 +102,16 @@ const Comic = () => {
 
           {/* Gallery */}
           {visibleComics.length > 0 ? (
-             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
               {visibleComics.map((manga) => (
                 <PoroductCard key={manga.id} manga={manga} />
               ))}
             </div>
           ) : (
             <div className="text-center py-12 bg-white rounded-lg border border-dashed border-gray-300">
-              <p className="text-gray-500">No se encontraron cómics con esos criterios</p>
+              <p className="text-gray-500">
+                No se encontraron cómics con esos criterios
+              </p>
             </div>
           )}
 

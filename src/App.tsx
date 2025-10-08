@@ -11,11 +11,10 @@ import Manga from "./pages/Manga";
 import Comic from "./pages/Comic";
 import ProductDetail from "./pages/ProductDetail";
 import CrearCuenta from "./pages/CrearCuenta";
-
 import Cart from "./pages/Cart";
-
-
 import "./styles/utils.css";
+import Ingresar from "./pages/Ingresar";
+import Usuario from "./pages/Usuario";
 
 const queryClient = new QueryClient();
 
@@ -32,8 +31,10 @@ const App = () => (
           <Route path="/manga" element={<Manga />} />
           <Route path="/comics" element={<Comic />} />
           <Route path="/crear-cuenta" element={<CrearCuenta />} />
+          <Route path="/ingresar" element={<Ingresar />} />
           <Route path="/product/:comicId" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/usuario" element={<Usuario />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

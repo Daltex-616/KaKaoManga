@@ -129,10 +129,10 @@ const Manga = () => {
                   }}
                   aria-label={`Filtrar por categoría ${cat}`}
                   aria-selected={activeCategory === cat}
-                  className={`text-sm px-4 py-2 rounded-full ${
+                  className={`px-3 py-1 rounded-full text-sm font-comic ${
                     activeCategory === cat
-                      ? 'bg-kakao-lightBlue text-white'
-                      : 'border-kakao-lightBlue text-kakao-darkBlue hover:bg-kakao-lightBlue/10'
+                      ? "bg-manga-blue text-manga-cream"
+                      : "border border-manga-blue text-manga-darkBlue hover:bg-manga-blue/10"
                   }`}
                 >
                   {cat}
