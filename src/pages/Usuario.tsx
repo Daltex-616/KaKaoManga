@@ -21,11 +21,18 @@ const Usuario = () => {
 
   return (
     <>
-    <Navbar />
-      <div className="max-w-xl mx-auto mt-12 bg-[#FFFAEF] border border-[#FEE8C3] rounded-xl shadow-lg p-6">
-        <h2 className="text-2xl font-bold text-[#1A1F2C] mb-4 text-center">
-          Perfil de Usuario
-        </h2>
+      <Navbar />
+      <div className="max-w-xl ml-10 mt-12 bg-[#FFFAEF] border border-[#FEE8C3] rounded-xl shadow-lg p-6 mb-36">
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <h2 className="text-3xl font-bold text-kakao-darkBlue">
+            Datos del usuario
+          </h2>
+          <img
+            src="/showa-logo.jpg"
+            alt="Kakao Manga Logo"
+            className="h-10 w-10 object-cover rounded-full"
+          />
+        </div>
 
         {!editando ? (
           <div className="space-y-3 text-[#1A1F2C]">
@@ -41,7 +48,9 @@ const Usuario = () => {
             <p>
               <strong>Dirección:</strong> {usuario.direccion}
             </p>
-
+            <p>
+              <strong>Favoritos:</strong> {usuario.favorito.join(", ")}
+            </p>
             <button
               onClick={() => setEditando(true)}
               className="mt-4 px-4 py-2 bg-[#0077B6] text-white rounded-md hover:bg-[#1A1F2C] transition"
@@ -121,7 +130,7 @@ const Usuario = () => {
           </form>
         )}
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };
