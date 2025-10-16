@@ -173,7 +173,7 @@ const Navbar = () => {
       {!isMobile && (
         <div className={`fixed bottom-0 left-0 w-full py-2 px-4 flex justify-end space-x-4 transition-opacity duration-300 z-[9999] ${showAuthButtons ? 'opacity-100' : 'opacity-0'}`}>
           <Link to="/crear-cuenta">
-            <Button variant="secondary" className="bg-kakao-lightBlue text-white hover:bg-kakao-darkBlue">
+            <Button variant="secondary" className="bg-kakao-lightBlue text-white hover:bg-kakao-darkBlue border border-black">
               Crear cuenta
             </Button>
           </Link>

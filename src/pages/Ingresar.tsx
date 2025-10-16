@@ -35,7 +35,7 @@ const Ingresar = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-b from-kakao-lightBlue to-white flex items-center justify-center px-4 py-10">
+      <div className="min-h-screen bg-[url('/showa_bg.png')] gb-cover flex items-center justify-center px-4 py-10">
         <div className="w-full max-w-md bg-white rounded-xl shadow-2xl border border-black p-8 relative">
           <h2 className="text-3xl font-bold text-kakao-darkBlue text-center mb-3">
             Ingresar
