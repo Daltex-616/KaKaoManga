@@ -3,10 +3,10 @@ import Footer from "@/components/layout/Footer";
 import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { products } from "@/data/comics";
-import PoroductCard from "../components/conts/ProductCard";
+import ProductCard from "@/components/conts/ProductCard";
+
 const categories = ["Todos", "DC", "Marvel", "Otros"];
 
 const Comic = () => {
@@ -104,7 +104,16 @@ const Comic = () => {
           {visibleComics.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
               {visibleComics.map((manga) => (
-                <PoroductCard key={manga.id} manga={manga} />
+                <div key={manga.id} className="relative">
+                  {manga.isNew && (
+                    <div className="absolute -top-2 -right-2 z-20">
+                      <Badge className="bg-comic-red text-white px-3 py-1 shadow-lg transform rotate-12">
+                        ¡Nuevo!
+                      </Badge>
+                    </div>
+                  )}
+                  <ProductCard manga={manga} />
+                </div>
               ))}
             </div>
           ) : (

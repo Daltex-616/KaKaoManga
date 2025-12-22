@@ -4,26 +4,27 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import PoroductCard from '../components/conts/ProductCard';
+import ProductCard from '../components/conts/ProductCard';
 import { products } from '@/data/comics';
 import { useNavigate } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
 
-const categories = ["Todos", "Shueisha", "Kodansha", "Otros"];
+const categories = ['Todos', 'Shueisha', 'Kodansha', 'Otros'];
 
 const filterMangas = (products, searchTerm, activeCategory, sortBy) => {
   let result = products
-    .filter((item) => item.category === "manga")
+    .filter((item) => item.category === 'manga')
     .filter((item) => {
       const matchesSearch =
         item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.author.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
-        activeCategory === "Todos" ||
-        (activeCategory === "Shueisha" && item.publisher === "Shueisha") ||
-        (activeCategory === "Kodansha" && item.publisher === "Kodansha") ||
-        (activeCategory === "Otros" &&
-          item.publisher !== "Shueisha" &&
-          item.publisher !== "Kodansha");
+        activeCategory === 'Todos' ||
+        (activeCategory === 'Shueisha' && item.publisher === 'Shueisha') ||
+        (activeCategory === 'Kodansha' && item.publisher === 'Kodansha') ||
+        (activeCategory === 'Otros' &&
+          item.publisher !== 'Shueisha' &&
+          item.publisher !== 'Kodansha');
       return matchesSearch && matchesCategory;
     });
 
@@ -49,21 +50,15 @@ const Manga = () => {
 
   const itemsPerPage = isMobile ? 6 : 12;
 
-  const handleCardClick = (id: number) => {
-    navigate(`/manga/${id}`);
-  };
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      setPage(1); // Reset to first page on resize
+      setPage(1);
     };
     checkMobile();
-    const handleResize = () => {
-      checkMobile();
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const filteredMangas = useMemo(() => {
@@ -131,8 +126,8 @@ const Manga = () => {
                   aria-selected={activeCategory === cat}
                   className={`px-3 py-1 rounded-full text-sm font-comic ${
                     activeCategory === cat
-                      ? "bg-manga-blue text-manga-cream"
-                      : "border border-manga-blue text-manga-darkBlue hover:bg-manga-blue/10"
+                      ? 'bg-manga-blue text-manga-cream'
+                      : 'border border-manga-blue text-manga-darkBlue hover:bg-manga-blue/10'
                   }`}
                 >
                   {cat}
@@ -152,7 +147,16 @@ const Manga = () => {
           ) : visibleMangas.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
               {visibleMangas.map((manga) => (
-                <PoroductCard key={manga.id} manga={manga}/>
+                <div key={manga.id} className="relative">
+                  {manga.isNew && (
+                    <div className="absolute -top-2 -right-2 z-20">
+                      <Badge className="bg-comic-red text-white px-3 py-1 shadow-lg transform rotate-12">
+                        ¡Nuevo!
+                      </Badge>
+                    </div>
+                  )}
+                  <ProductCard manga={manga} />
+                </div>
               ))}
             </div>
           ) : (

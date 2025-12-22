@@ -1,15 +1,12 @@
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { useCart } from '@/context/CartContext';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../../store/useCartStore';
-import { useNavigate } from 'react-router-dom';;
+import { Badge } from '@/components/ui/badge';
 
-
-const PoroductCard = ({ manga }) => {
+const ProductCard = ({ manga }) => {
   const { addToCart } = useCartStore();
   const navigate = useNavigate();
-
 
   const handleCardClick = (id: number) => {
     navigate(`/product/${id}`);
@@ -24,9 +21,17 @@ const PoroductCard = ({ manga }) => {
           window.location.href = `/manga/${manga.id}`;
         }
       }}
-      className="overflow-hidden bg-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-kakao-lightBlue"
-
+      className="overflow-hidden bg-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-kakao-lightBlue relative"
     >
+      {/* Badge de nuevo */}
+      {manga.isNew && (
+        <div className="absolute -top-2 -right-2 z-20">
+          <Badge className="bg-comic-red text-white px-3 py-1 shadow-lg transform rotate-12">
+            ¡Nuevo!
+          </Badge>
+        </div>
+      )}
+
       <Link to={`/manga/${manga.id}`} className="block">
         <div className="aspect-[3/4] relative">
           <img
@@ -40,15 +45,17 @@ const PoroductCard = ({ manga }) => {
           </div>
         </div>
       </Link>
+
       <CardContent className="p-4">
         <h3 className="font-semibold text-lg line-clamp-1">{manga.title}</h3>
         <p className="text-gray-600 text-sm line-clamp-1">{manga.author}</p>
         <p className="text-kakao-lightBlue font-bold mt-2">${manga.price.toFixed(2)}</p>
       </CardContent>
+
       <CardFooter className="p-4 pt-0">
         <Button
           onClick={(e) => {
-            e.stopPropagation(); // 👈 evita que se dispare el onClick del Card
+            e.stopPropagation();
             addToCart(manga);
           }}
           variant="outline"
@@ -62,4 +69,4 @@ const PoroductCard = ({ manga }) => {
   );
 };
 
-export default PoroductCard;
+export default ProductCard;

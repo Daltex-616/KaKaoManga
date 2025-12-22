@@ -3,6 +3,7 @@ import CafeCard from "../components/conts/CafeCard";
 import { products } from "../data/cafe";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BentoGallery from "./BentoGallery";
 
 function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -178,7 +179,7 @@ const Cafe = () => {
           )}
         </div>
       </section>
-
+          <BentoGallery />
       <Footer />
     </>
   );
