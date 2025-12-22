@@ -15,7 +15,6 @@ const Index = () => {
         <FeaturedProducts />
         <ProductGallery />
         <CafeSection />
-        <Newsletter />
       </main>
       <Footer />
     </div>

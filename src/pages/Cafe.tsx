@@ -179,7 +179,6 @@ const Cafe = () => {
           )}
         </div>
       </section>
-          <BentoGallery />
       <Footer />
     </>
   );

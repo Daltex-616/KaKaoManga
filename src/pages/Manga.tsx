@@ -9,7 +9,7 @@ import { products } from '@/data/comics';
 import { useNavigate } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 
-const categories = ['Todos', 'Shueisha', 'Kodansha', 'Otros'];
+const categories = ['Todos', 'Ivrea', 'Ovnipres', 'Otros'];
 
 const filterMangas = (products, searchTerm, activeCategory, sortBy) => {
   let result = products

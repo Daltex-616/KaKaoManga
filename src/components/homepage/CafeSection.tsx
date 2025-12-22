@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const CafeSection = () => {
   const features = [
@@ -103,7 +104,7 @@ const CafeSection = () => {
                           transition-all duration-300
                           hover:scale-105 active:scale-100"
               >
-                <span className="relative z-10">Ver Menú Completo</span>
+                <Link to={"cafe"} replace className="relative z-10">Ver Menú Completo </Link>
                 
                 {/* Efecto de brillo al hover */}
                 <span className="absolute inset-0 bg-comic-yellow/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>

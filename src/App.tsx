@@ -15,6 +15,7 @@ import Cart from "./pages/Cart";
 import "./styles/utils.css";
 import Ingresar from "./pages/Ingresar";
 import Usuario from "./pages/Usuario";
+import ScrollToTop from "./components/conts/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/cafe" element={<Cafe />} />
